@@ -7,6 +7,9 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import io.github.fabricators_of_create.porting_lib.util.EnvExecutor;
 import net.fabricmc.api.ModInitializer;
 
+import net.fugimii.solarpunk.block.ModBlocks;
+import net.fugimii.solarpunk.block.entity.ModBlockEntities;
+import net.fugimii.solarpunk.item.CreativeModeTabs;
 import net.minecraft.resources.ResourceLocation;
 
 import org.slf4j.Logger;
@@ -25,6 +28,11 @@ public class SolarpunkMod implements ModInitializer {
 				() -> () -> "{} is accessing Porting Lib from the client!",
 				() -> () -> "{} is accessing Porting Lib from the server!"
 		), NAME);
+
+		ModBlocks.register();
+		ModBlockEntities.register();
+		CreativeModeTabs.register();
+		REGISTRATE.register();
 	}
 
 	public static ResourceLocation id(String path) {
