@@ -80,10 +80,14 @@ dependencies {
 	// Fabric Energy API
 	include modApi("teamreborn:energy:${energy_api_version}")
 
+	// Create New Age
 	modImplementation "maven.modrinth:create-new-age:1.1.2"
 
 //	botarium-fabric-1.20.1/2.3.2/
 	include modApi("earth.terrarium.botarium:botarium-fabric-1.20.1:2.3.1")
+
+	// Create addition
+	modImplementation "maven.modrinth:createaddition:vV4bZmhm"
 }
 
 processResources {

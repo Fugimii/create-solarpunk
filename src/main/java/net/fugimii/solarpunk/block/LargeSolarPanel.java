@@ -1,28 +1,24 @@
 package net.fugimii.solarpunk.block;
 
-import net.minecraft.core.Direction;
-import net.minecraft.world.item.context.BlockPlaceContext;
+import com.simibubi.create.foundation.block.IBE;
+
+import net.fugimii.solarpunk.block.entity.LargeSolarPanelBlockEntity;
+import net.fugimii.solarpunk.block.entity.ModBlockEntities;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
-public class LargeSolarPanel extends HorizontalDirectionalBlock {
-
-	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(BlockStateProperties.FACING);
-	}
-
-	public LargeSolarPanel(Properties properties) {
+public class LargeSolarPanel extends Block implements IBE<LargeSolarPanelBlockEntity> {
+	protected LargeSolarPanel(Properties properties) {
 		super(properties);
-		registerDefaultState(defaultBlockState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH));
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-		return super.getStateForPlacement(ctx).with(BlockStateProperties.HORIZONTAL_FACING, ctx.getHorizontalDirection().getOpposite());
+	public Class<LargeSolarPanelBlockEntity> getBlockEntityClass() {
+		return LargeSolarPanelBlockEntity.class;
+	}
+
+	@Override
+	public BlockEntityType<? extends LargeSolarPanelBlockEntity> getBlockEntityType() {
+		return ModBlockEntities.LARGE_SOLAR_PANEL.get();
 	}
 }

@@ -8,10 +8,11 @@ import net.fugimii.solarpunk.block.ModBlocks;
 import static net.fugimii.solarpunk.SolarpunkMod.REGISTRATE;
 
 public class ModBlockEntities {
-	public static final BlockEntityEntry<LargeSolarPanelBlockEntity> LARGE_SOLAR_PANEL_BLOCK_ENTITY = REGISTRATE
-			.blockEntity("large_solar_panel_be", LargeSolarPanelBlockEntity::new)
+	public static final BlockEntityEntry<LargeSolarPanelBlockEntity> LARGE_SOLAR_PANEL = REGISTRATE
+			.blockEntity("large_solar_panel", LargeSolarPanelBlockEntity::new)
 			.validBlocks(ModBlocks.LARGE_SOLAR_PANEL)
 			.register();
+
 
 	public static void register() {
 		SolarpunkMod.LOGGER.info("Registering Block Entities for " + SolarpunkMod.MOD_ID);
