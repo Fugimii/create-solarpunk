@@ -8,6 +8,10 @@ import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 
+import com.simibubi.create.foundation.item.TooltipHelper;
+
+import com.simibubi.create.foundation.utility.Lang;
+
 import io.github.fabricators_of_create.porting_lib.util.LazyOptional;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.fugimii.solarpunk.SolarpunkMod;
@@ -34,6 +38,7 @@ import java.util.List;
 public class LargeSolarPanelBlockEntity extends SmartBlockEntity implements EnergyTransferable, IHaveGoggleInformation {
 	protected final InternalEnergyStorage energy;
 	public int EnergyProductionRate = 30; // Depends on the light level from the sky (normalized light level * EnergyProductionRate)
+	private boolean isViewObstructed = false;
 
 	public LargeSolarPanelBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
@@ -46,7 +51,21 @@ public class LargeSolarPanelBlockEntity extends SmartBlockEntity implements Ener
 	@Override
 	public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
 		tooltip.add(Component.literal(spacing).append(Component.translatable(SolarpunkMod.MOD_ID + ".tooltip.energy.production").withStyle(ChatFormatting.GRAY)));
-		tooltip.add(Component.literal(spacing).append(Component.literal(" " + Util.format(getEnergyProductionRate(level, getBlockPos())) + "fe/t ")).withStyle(ChatFormatting.AQUA));
+		tooltip.add(Component.literal(spacing).append(Component.literal(" " + Util.format(getEnergyProductionRate(level, getBlockPos())) + "fe/t ")).withStyle(ChatFormatting.AQUA)
+				.append(Component.translatable(SolarpunkMod.MOD_ID + ".tooltip.solar_panel.at_current_time").withStyle(ChatFormatting.DARK_GRAY)));
+		if (isViewObstructed) {
+			tooltip.add(Component.literal(spacing));
+			tooltip.add(Component.literal(spacing).append(Component.translatable(SolarpunkMod.MOD_ID + ".tooltip.solar_panel.obstructed").withStyle(ChatFormatting.GOLD)));
+
+			Component hint = Component.literal("").append(Component.translatable(SolarpunkMod.MOD_ID + ".tooltip.solar_panel.obstructed_description").withStyle(ChatFormatting.GRAY));
+			List<Component> cutString = TooltipHelper.cutTextComponent(hint, TooltipHelper.Palette.GRAY_AND_WHITE);
+			for (int i = 0; i < cutString.size(); i++)
+				Lang.builder()
+						.add(cutString.get(i)
+								.copy())
+						.forGoggles(tooltip);
+		}
+
 		return true;
 	}
 
@@ -119,9 +138,11 @@ public class LargeSolarPanelBlockEntity extends SmartBlockEntity implements Ener
 
 		BlockHitResult hitResult = level.clip(context);
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
+			isViewObstructed = true;
 			return 0;
 		} else {
-			return EnergyProductionRate;
+			isViewObstructed = false;
+			return Math.abs(EnergyProductionRate - level.getSkyDarken());
 		}
 	}
 
