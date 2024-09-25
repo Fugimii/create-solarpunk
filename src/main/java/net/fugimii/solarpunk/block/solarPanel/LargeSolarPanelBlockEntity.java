@@ -1,4 +1,4 @@
-package net.fugimii.solarpunk.block.entity;
+package net.fugimii.solarpunk.block.solarPanel;
 
 import com.mrh0.createaddition.energy.InternalEnergyStorage;
 import com.mrh0.createaddition.transfer.EnergyTransferable;
@@ -16,9 +16,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -49,7 +47,6 @@ public class LargeSolarPanelBlockEntity extends SmartBlockEntity implements Ener
 	public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
 		tooltip.add(Component.literal(spacing).append(Component.translatable(SolarpunkMod.MOD_ID + ".tooltip.energy.production").withStyle(ChatFormatting.GRAY)));
 		tooltip.add(Component.literal(spacing).append(Component.literal(" " + Util.format(getEnergyProductionRate(level, getBlockPos())) + "fe/t ")).withStyle(ChatFormatting.AQUA));
-		tooltip.add(Component.literal(String.valueOf(Math.toDegrees(level.getSunAngle(1.0F)))));
 		return true;
 	}
 
@@ -87,8 +84,7 @@ public class LargeSolarPanelBlockEntity extends SmartBlockEntity implements Ener
 		if(firstTickState) firstTick();
 		firstTickState = false;
 
-		if(true)
-			energy.internalProduceEnergy(getEnergyProductionRate(level, getBlockPos()));
+		energy.internalProduceEnergy(getEnergyProductionRate(level, getBlockPos()));
 
 		for(Direction d : Direction.values()) {
 			if(!isEnergyOutput(d))
@@ -106,23 +102,23 @@ public class LargeSolarPanelBlockEntity extends SmartBlockEntity implements Ener
 	public int getEnergyProductionRate(Level level, BlockPos pos) {
 		// Get the direction towards the sun based on the time of day (simplified for noon)
 		float celestialAngle = level.getSunAngle(1.0F);
-		Vec3 sunDirection = new Vec3(0, 1, 0).zRot(level.getSunAngle(1.0F));
+		// Convert that direction to a vector
+		Vec3 sunDirection = new Vec3(0, 1, 0).zRot(celestialAngle)
+				.yRot((float) Math.toRadians(180.0F)); // Flip the vector to point towards the sun
 
 		Vec3 blockPos = new Vec3(pos.getX() + 0.5, pos.above().getY(), pos.getZ() + 0.5); // Convert the BlockPos to a Vec3
-
-		SolarpunkMod.LOGGER.info(String.valueOf(blockPos.add(sunDirection.scale(50.0F).yRot((float) Math.toRadians(180.0F)))));
 
 		// Perform the raycast
 		ClipContext context = new ClipContext(
 				blockPos,
-				blockPos.add(sunDirection.scale(50.0F).yRot((float) Math.toRadians(180.0F))),  // Extend the ray far enough (1000 blocks or more)
-				ClipContext.Block.COLLIDER,
+				blockPos.add(sunDirection.scale(1000.0F)),  // Extend the ray far enough
+				ClipContext.Block.VISUAL,
 				ClipContext.Fluid.ANY,
-				null
+				null // uhhh what am I supposed to put here?
 		);
 
 		BlockHitResult hitResult = level.clip(context);
-		if (hitResult.getType() == BlockHitResult.Type.MISS) {
+		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			return 0;
 		} else {
 			return EnergyProductionRate;

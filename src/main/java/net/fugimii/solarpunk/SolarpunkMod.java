@@ -8,7 +8,7 @@ import io.github.fabricators_of_create.porting_lib.util.EnvExecutor;
 import net.fabricmc.api.ModInitializer;
 
 import net.fugimii.solarpunk.block.ModBlocks;
-import net.fugimii.solarpunk.block.entity.ModBlockEntities;
+import net.fugimii.solarpunk.block.ModBlockEntities;
 import net.fugimii.solarpunk.item.CreativeModeTabs;
 import net.minecraft.resources.ResourceLocation;
 

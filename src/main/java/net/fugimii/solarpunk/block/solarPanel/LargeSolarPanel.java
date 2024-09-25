@@ -1,14 +1,13 @@
-package net.fugimii.solarpunk.block;
+package net.fugimii.solarpunk.block.solarPanel;
 
 import com.simibubi.create.foundation.block.IBE;
 
-import net.fugimii.solarpunk.block.entity.LargeSolarPanelBlockEntity;
-import net.fugimii.solarpunk.block.entity.ModBlockEntities;
+import net.fugimii.solarpunk.block.ModBlockEntities;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class LargeSolarPanel extends Block implements IBE<LargeSolarPanelBlockEntity> {
-	protected LargeSolarPanel(Properties properties) {
+	public LargeSolarPanel(Properties properties) {
 		super(properties);
 	}
 

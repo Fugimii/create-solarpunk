@@ -1,9 +1,9 @@
-package net.fugimii.solarpunk.block.entity;
+package net.fugimii.solarpunk.block;
 
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
 import net.fugimii.solarpunk.SolarpunkMod;
-import net.fugimii.solarpunk.block.ModBlocks;
+import net.fugimii.solarpunk.block.solarPanel.LargeSolarPanelBlockEntity;
 
 import static net.fugimii.solarpunk.SolarpunkMod.REGISTRATE;
 

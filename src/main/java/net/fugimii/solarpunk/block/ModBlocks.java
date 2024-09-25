@@ -3,6 +3,7 @@ package net.fugimii.solarpunk.block;
 import com.tterrag.registrate.util.entry.BlockEntry;
 
 import net.fugimii.solarpunk.SolarpunkMod;
+import net.fugimii.solarpunk.block.solarPanel.LargeSolarPanel;
 import net.fugimii.solarpunk.item.CreativeModeTabs;
 
 import net.minecraft.world.level.block.Blocks;
