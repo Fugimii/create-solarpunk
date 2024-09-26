@@ -35,18 +35,12 @@ import team.reborn.energy.api.EnergyStorageUtil;
 
 import java.util.List;
 
-public class LargeSolarPanelBlockEntity extends SmartBlockEntity implements EnergyTransferable, IHaveGoggleInformation {
-	protected final InternalEnergyStorage energy;
-	public int EnergyProductionRate = 30; // Depends on the light level from the sky (normalized light level * EnergyProductionRate)
+public class LargeSolarPanelBlockEntity extends AbstractSolarPanelBlockEntity {
 	private boolean isViewObstructed = false;
 
 	public LargeSolarPanelBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
-		energy = new InternalEnergyStorage(1024, 0, 128);
 	}
-
-	@Override
-	public void addBehaviours(List<BlockEntityBehaviour> behaviours) {}
 
 	@Override
 	public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
@@ -65,59 +59,10 @@ public class LargeSolarPanelBlockEntity extends SmartBlockEntity implements Ener
 								.copy())
 						.forGoggles(tooltip);
 		}
-
 		return true;
 	}
 
 	@Override
-	public EnergyStorage getEnergyStorage(Direction side) {
-		return energy;
-	}
-
-	public boolean isEnergyInput(Direction side) {
-		return false;
-	}
-
-	public boolean isEnergyOutput(Direction side) {
-		return true;
-	}
-
-	@Override
-	public void read(CompoundTag compound, boolean clientPacket) {
-		super.read(compound, clientPacket);
-		energy.read(compound);
-	}
-
-	@Override
-	public void write(CompoundTag compound, boolean clientPacket) {
-		super.write(compound, clientPacket);
-		energy.write(compound);
-	}
-
-	private boolean firstTickState = true;
-
-	@Override
-	public void tick() {
-		super.tick();
-		if(level.isClientSide()) return;
-		if(firstTickState) firstTick();
-		firstTickState = false;
-
-		energy.internalProduceEnergy(getEnergyProductionRate(level, getBlockPos()));
-
-		for(Direction d : Direction.values()) {
-			if(!isEnergyOutput(d))
-				continue;
-			EnergyStorage ies = getCachedEnergy(d);
-			if(ies == null)
-				continue;
-			try(Transaction t = Transaction.openOuter()) {
-				EnergyStorageUtil.move(energy, ies, EnergyProductionRate, t);
-				t.commit();
-			}
-		}
-	}
-
 	public int getEnergyProductionRate(Level level, BlockPos pos) {
 		// Get the direction towards the sun based on the time of day (simplified for noon)
 		float celestialAngle = level.getSunAngle(1.0F);
@@ -144,50 +89,5 @@ public class LargeSolarPanelBlockEntity extends SmartBlockEntity implements Ener
 			isViewObstructed = false;
 			return Math.abs(EnergyProductionRate - level.getSkyDarken());
 		}
-	}
-
-	public void firstTick() {
-		updateCache();
-	}
-	public void updateCache() {
-		if(level.isClientSide()) return;
-		for(Direction side : Direction.values()) {
-			BlockEntity te = level.getBlockEntity(worldPosition.relative(side));
-			if(te == null) {
-				setCache(side, LazyOptional.empty());
-				continue;
-			}
-			LazyOptional<EnergyStorage> le = LazyOptional.ofObject(EnergyStorage.SIDED.find(level, worldPosition.relative(side), side.getOpposite()));
-			setCache(side, le);
-		}
-	}
-
-	private LazyOptional<EnergyStorage> escacheUp = LazyOptional.empty();
-	private LazyOptional<EnergyStorage> escacheDown = LazyOptional.empty();
-	private LazyOptional<EnergyStorage> escacheNorth = LazyOptional.empty();
-	private LazyOptional<EnergyStorage> escacheEast = LazyOptional.empty();
-	private LazyOptional<EnergyStorage> escacheSouth = LazyOptional.empty();
-	private LazyOptional<EnergyStorage> escacheWest = LazyOptional.empty();
-
-	public void setCache(Direction side, LazyOptional<EnergyStorage> storage) {
-		switch (side) {
-			case DOWN -> escacheDown = storage;
-			case EAST -> escacheEast = storage;
-			case NORTH -> escacheNorth = storage;
-			case SOUTH -> escacheSouth = storage;
-			case UP -> escacheUp = storage;
-			case WEST -> escacheWest = storage;
-		}
-	}
-
-	public EnergyStorage getCachedEnergy(Direction side) {
-		return switch (side) {
-			case DOWN -> escacheDown.orElse(null);
-			case EAST -> escacheEast.orElse(null);
-			case NORTH -> escacheNorth.orElse(null);
-			case SOUTH -> escacheSouth.orElse(null);
-			case UP -> escacheUp.orElse(null);
-			case WEST -> escacheWest.orElse(null);
-		};
 	}
 }
