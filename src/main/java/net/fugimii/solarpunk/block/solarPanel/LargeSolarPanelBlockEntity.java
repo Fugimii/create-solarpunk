@@ -4,6 +4,7 @@ import com.mrh0.createaddition.energy.InternalEnergyStorage;
 import com.mrh0.createaddition.transfer.EnergyTransferable;
 import com.mrh0.createaddition.util.Util;
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
+import com.simibubi.create.content.kinetics.waterwheel.WaterWheelBlock;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;

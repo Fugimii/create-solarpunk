@@ -2,5 +2,7 @@
   "solarpunk.tooltip.energy.production": "Energy Generated:",
   "solarpunk.tooltip.solar_panel.obstructed": "Obstructed",
   "solarpunk.tooltip.solar_panel.obstructed_description": "It appears that this solar panel's view of the sun is _obstructed_. Remove whatever is blocking it from the sun to make it _produce energy_.",
-  "solarpunk.tooltip.solar_panel.at_current_time": "at current time"
+  "solarpunk.tooltip.solar_panel.at_current_time": "at current time",
+
+  "itemGroup.solarpunk": "Create: Solarpunk"
 }

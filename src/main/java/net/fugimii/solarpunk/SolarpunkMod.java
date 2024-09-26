@@ -9,7 +9,7 @@ import net.fabricmc.api.ModInitializer;
 
 import net.fugimii.solarpunk.block.ModBlocks;
 import net.fugimii.solarpunk.block.ModBlockEntities;
-import net.fugimii.solarpunk.item.CreativeModeTabs;
+import net.fugimii.solarpunk.tab.ModCreativeModeTabs;
 import net.minecraft.resources.ResourceLocation;
 
 import org.slf4j.Logger;
@@ -31,7 +31,7 @@ public class SolarpunkMod implements ModInitializer {
 
 		ModBlocks.register();
 		ModBlockEntities.register();
-		CreativeModeTabs.register();
+		ModCreativeModeTabs.register();
 		REGISTRATE.register();
 	}
 
