@@ -5,17 +5,20 @@
   "name": "Create: solarpunk",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Me!"
+    "Fugimii"
   ],
   "contact": {
     "sources": "https://github.com/Fabricators-of-Create/create-fabric-addon-template"
   },
-  "license": "CC0",
+  "license": "GPLv3.0",
   "icon": "assets/solarpunk/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
       "net.fugimii.solarpunk.SolarpunkMod"
+    ],
+    "fabric-datagen": [
+      "net.fugimii.solarpunk.SolarpunkModDataGenerator"
     ]
   },
   "mixins": [
