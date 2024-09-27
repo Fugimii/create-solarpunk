@@ -31,7 +31,11 @@ public class LargeSolarPanelInstance extends BlockEntityInstance<LargeSolarPanel
 
 		double sunAngle = Math.toDegrees(world.getSunAngle(1.0F));
 
-		SolarpunkMod.LOGGER.info(String.valueOf(sunAngle));
+		if (sunAngle < 90 || sunAngle > 270) {
+			panel.rotateCentered(Direction.SOUTH, (float) Math.toRadians(sunAngle));
+		} else {
+			panel.rotateCentered(Direction.SOUTH, (float) Math.toRadians(180 - sunAngle));
+		}
 
 		int skyLight = world.getBrightness(LightLayer.SKY, blockEntity.getBlockPos().above());
 		panel.setSkyLight(skyLight);
