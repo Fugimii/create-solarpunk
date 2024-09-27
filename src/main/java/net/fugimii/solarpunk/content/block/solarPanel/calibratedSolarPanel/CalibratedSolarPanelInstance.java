@@ -1,4 +1,4 @@
-package net.fugimii.solarpunk.block.solarPanel;
+package net.fugimii.solarpunk.content.block.solarPanel.calibratedSolarPanel;
 
 import com.jozufozu.flywheel.api.Material;
 import com.jozufozu.flywheel.api.MaterialManager;
@@ -8,20 +8,19 @@ import com.jozufozu.flywheel.core.materials.model.ModelData;
 import com.jozufozu.flywheel.util.transform.Rotate;
 import com.jozufozu.flywheel.util.transform.Translate;
 
-import net.fugimii.solarpunk.SolarpunkMod;
-import net.fugimii.solarpunk.block.ModPartialModels;
+import net.fugimii.solarpunk.content.ModPartialModels;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.LightLayer;
 
-public class LargeSolarPanelInstance extends BlockEntityInstance<LargeSolarPanelBlockEntity> implements DynamicInstance {
+public class CalibratedSolarPanelInstance extends BlockEntityInstance<CalibratedSolarPanelBlockEntity> implements DynamicInstance {
 	protected final ModelData panel;
 
-	public LargeSolarPanelInstance(MaterialManager materialManager, LargeSolarPanelBlockEntity blockEntity) {
+	public CalibratedSolarPanelInstance(MaterialManager materialManager, CalibratedSolarPanelBlockEntity blockEntity) {
 		super(materialManager, blockEntity);
 
 		Material<ModelData> mat = getTransformMaterial();
 
-		panel = mat.getModel(ModPartialModels.LARGE_SOLAR_PANEL_PANEL, blockState)
+		panel = mat.getModel(ModPartialModels.CALIBRATED_SOLAR_PANEL_PANEL, blockState)
 				.createInstance();
 	}
 

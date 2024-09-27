@@ -1,4 +1,4 @@
-package net.fugimii.solarpunk.block;
+package net.fugimii.solarpunk.content;
 
 import com.jozufozu.flywheel.core.PartialModel;
 
@@ -6,7 +6,7 @@ import net.fugimii.solarpunk.SolarpunkMod;
 
 public class ModPartialModels {
 	public static final PartialModel
-		LARGE_SOLAR_PANEL_PANEL = block("large_solar_panel_panel")
+			CALIBRATED_SOLAR_PANEL_PANEL = block("calibrated_solar_panel_panel")
 	;
 
 	private static PartialModel block(String path) {

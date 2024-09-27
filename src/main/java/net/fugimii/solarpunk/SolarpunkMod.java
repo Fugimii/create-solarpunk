@@ -7,10 +7,10 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import io.github.fabricators_of_create.porting_lib.util.EnvExecutor;
 import net.fabricmc.api.ModInitializer;
 
-import net.fugimii.solarpunk.block.ModBlocks;
-import net.fugimii.solarpunk.block.ModBlockEntities;
-import net.fugimii.solarpunk.block.ModPartialModels;
-import net.fugimii.solarpunk.tab.ModCreativeModeTabs;
+import net.fugimii.solarpunk.content.ModBlocks;
+import net.fugimii.solarpunk.content.ModBlockEntities;
+import net.fugimii.solarpunk.content.ModPartialModels;
+import net.fugimii.solarpunk.content.ModCreativeModeTabs;
 import net.minecraft.resources.ResourceLocation;
 
 import org.slf4j.Logger;

@@ -1,12 +1,7 @@
-package net.fugimii.solarpunk.tab;
-
-import com.simibubi.create.AllCreativeModeTabs;
-
-import com.simibubi.create.foundation.utility.Components;
+package net.fugimii.solarpunk.content;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fugimii.solarpunk.SolarpunkMod;
-import net.fugimii.solarpunk.block.ModBlocks;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -19,11 +14,11 @@ public class ModCreativeModeTabs {
 			new ResourceLocation(SolarpunkMod.MOD_ID, "solarpunk"),
 			FabricItemGroup.builder()
 					.title(Component.translatable("itemGroup.solarpunk"))
-					.icon(() -> new ItemStack(ModBlocks.LARGE_SOLAR_PANEL))
+					.icon(() -> new ItemStack(ModBlocks.CALIBRATED_SOLAR_PANEL))
 					.displayItems((pParameters, entries) -> {
 
 						// Create Blocks
-						entries.accept(ModBlocks.LARGE_SOLAR_PANEL);
+						entries.accept(ModBlocks.CALIBRATED_SOLAR_PANEL);
 
 					}).build());
 

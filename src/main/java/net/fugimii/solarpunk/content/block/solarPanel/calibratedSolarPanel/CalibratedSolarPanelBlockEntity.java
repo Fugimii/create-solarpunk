@@ -1,22 +1,15 @@
-package net.fugimii.solarpunk.block.solarPanel;
+package net.fugimii.solarpunk.content.block.solarPanel.calibratedSolarPanel;
 
-import com.mrh0.createaddition.energy.InternalEnergyStorage;
-import com.mrh0.createaddition.transfer.EnergyTransferable;
 import com.mrh0.createaddition.util.Util;
-import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
-import com.simibubi.create.content.kinetics.waterwheel.WaterWheelBlock;
-import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
-
-import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 
 import com.simibubi.create.foundation.item.TooltipHelper;
 
 import com.simibubi.create.foundation.utility.Lang;
 
 import net.fugimii.solarpunk.SolarpunkMod;
+import net.fugimii.solarpunk.content.block.solarPanel.AbstractSolarPanelBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -30,10 +23,10 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
-public class LargeSolarPanelBlockEntity extends AbstractSolarPanelBlockEntity {
+public class CalibratedSolarPanelBlockEntity extends AbstractSolarPanelBlockEntity {
 	private boolean isViewObstructed = false;
 
-	public LargeSolarPanelBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+	public CalibratedSolarPanelBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
 	}
 

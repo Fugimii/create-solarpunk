@@ -1,4 +1,4 @@
-package net.fugimii.solarpunk.block.solarPanel;
+package net.fugimii.solarpunk.content.block.solarPanel;
 
 import com.mrh0.createaddition.energy.InternalEnergyStorage;
 import com.mrh0.createaddition.transfer.EnergyTransferable;
@@ -6,8 +6,6 @@ import com.mrh0.createaddition.util.Util;
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
-import com.simibubi.create.foundation.item.TooltipHelper;
-import com.simibubi.create.foundation.utility.Lang;
 
 import io.github.fabricators_of_create.porting_lib.util.LazyOptional;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
@@ -17,14 +15,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
 import team.reborn.energy.api.EnergyStorage;
 import team.reborn.energy.api.EnergyStorageUtil;
 
