@@ -13,7 +13,6 @@ public class ModBlockEntities {
 			.validBlocks(ModBlocks.LARGE_SOLAR_PANEL)
 			.register();
 
-
 	public static void register() {
 		SolarpunkMod.LOGGER.info("Registering Block Entities for " + SolarpunkMod.MOD_ID);
 	}

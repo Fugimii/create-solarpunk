@@ -1,6 +1,5 @@
 package net.fugimii.solarpunk.block;
 
-import com.simibubi.create.AllBlocks;
 import com.tterrag.registrate.util.entry.BlockEntry;
 
 import net.fugimii.solarpunk.SolarpunkMod;
@@ -11,7 +10,7 @@ import net.minecraft.world.level.material.MapColor;
 
 public class ModBlocks {
 	public static final BlockEntry<LargeSolarPanel> LARGE_SOLAR_PANEL = SolarpunkMod.REGISTRATE.block("large_solar_panel", LargeSolarPanel::new)
-			.initialProperties(AllBlocks.ANDESITE_CASING)
+			.initialProperties(() -> Blocks.SPRUCE_PLANKS)
 			.properties(p -> p.mapColor(MapColor.COLOR_BLUE))
 			.item()
 			.build()
