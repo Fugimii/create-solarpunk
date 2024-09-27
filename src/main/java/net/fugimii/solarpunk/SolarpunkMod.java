@@ -9,6 +9,7 @@ import net.fabricmc.api.ModInitializer;
 
 import net.fugimii.solarpunk.block.ModBlocks;
 import net.fugimii.solarpunk.block.ModBlockEntities;
+import net.fugimii.solarpunk.block.ModPartialModels;
 import net.fugimii.solarpunk.tab.ModCreativeModeTabs;
 import net.minecraft.resources.ResourceLocation;
 
@@ -32,10 +33,15 @@ public class SolarpunkMod implements ModInitializer {
 		ModBlocks.register();
 		ModBlockEntities.register();
 		ModCreativeModeTabs.register();
+		ModPartialModels.register();
 		REGISTRATE.register();
 	}
 
 	public static ResourceLocation id(String path) {
+		return new ResourceLocation(MOD_ID, path);
+	}
+
+	public static ResourceLocation asResource(String path) {
 		return new ResourceLocation(MOD_ID, path);
 	}
 }
