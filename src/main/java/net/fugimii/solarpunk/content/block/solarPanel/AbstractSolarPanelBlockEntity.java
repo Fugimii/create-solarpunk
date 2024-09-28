@@ -27,6 +27,8 @@ import java.util.List;
 public class AbstractSolarPanelBlockEntity extends SmartBlockEntity implements EnergyTransferable, IHaveGoggleInformation {
 	protected final InternalEnergyStorage energy;
 	public int EnergyProductionRate = 30;
+	public float EnergyHeightMultiplier = 0.2F;
+	public float EnergyTemperatureMultiplier = 0.2F;
 
 	public AbstractSolarPanelBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
@@ -95,6 +97,36 @@ public class AbstractSolarPanelBlockEntity extends SmartBlockEntity implements E
 
 	public int getEnergyProductionRate(Level level, BlockPos pos) {
 		return 0;
+	}
+
+	public float getEnergyMultipler(Level level, BlockPos pos) {
+		float energyMultiplier = 1;
+
+		if (!level.dimensionType().bedWorks()) { // If its the nether or end
+			return 0;
+		}
+
+		if (level.isRaining()) {
+			return 0;
+		}
+
+		// Multiply the energy production by the height above sea level
+		int height = pos.getY();
+		if (height > level.getSeaLevel()) {
+			float heightAboveSeaLevel = height - level.getSeaLevel();
+			float normalisedHeightAboveSeaLevel = heightAboveSeaLevel / (level.getMaxBuildHeight() - level.getSeaLevel());
+			energyMultiplier += (normalisedHeightAboveSeaLevel * EnergyHeightMultiplier);
+		}
+
+		// Multiply the energy production by the temperature in the current biome
+		float normalizedTemperature = level.getBiome(pos).value().getBaseTemperature() / 2.0F;
+		if (normalizedTemperature > 0.7F) {
+			energyMultiplier += (normalizedTemperature * EnergyTemperatureMultiplier);
+			SolarpunkMod.LOGGER.info(String.valueOf(normalizedTemperature * EnergyTemperatureMultiplier));
+			SolarpunkMod.LOGGER.info("ENERGY " + energyMultiplier);
+		}
+
+		return energyMultiplier;
 	}
 
 	public void firstTick() {

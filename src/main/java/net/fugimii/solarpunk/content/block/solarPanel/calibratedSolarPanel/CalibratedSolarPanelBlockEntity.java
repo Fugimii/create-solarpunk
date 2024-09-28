@@ -81,7 +81,7 @@ public class CalibratedSolarPanelBlockEntity extends AbstractSolarPanelBlockEnti
 			return 0;
 		} else {
 			isViewObstructed = false;
-			return Math.abs(EnergyProductionRate - level.getSkyDarken());
+			return (int) (Math.abs(EnergyProductionRate - level.getSkyDarken()) * getEnergyMultipler(level, pos));
 		}
 	}
 }
