@@ -6,8 +6,8 @@ import net.fugimii.solarpunk.content.ModBlockEntities;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
-public class CalibratedSolarPanel extends Block implements IBE<CalibratedSolarPanelBlockEntity> {
-	public CalibratedSolarPanel(Properties properties) {
+public class CalibratedSolarPanelBlock extends Block implements IBE<CalibratedSolarPanelBlockEntity> {
+	public CalibratedSolarPanelBlock(Properties properties) {
 		super(properties);
 	}
 

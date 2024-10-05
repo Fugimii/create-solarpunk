@@ -17,7 +17,6 @@ public class ModCreativeModeTabs {
 					.icon(() -> new ItemStack(ModBlocks.CALIBRATED_SOLAR_PANEL))
 					.displayItems((pParameters, entries) -> {
 
-						// Create Blocks
 						entries.accept(ModBlocks.CALIBRATED_SOLAR_PANEL);
 
 					}).build());
