@@ -10,6 +10,7 @@ import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
 import io.github.fabricators_of_create.porting_lib.util.LazyOptional;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.fugimii.solarpunk.SolarpunkMod;
+import net.fugimii.solarpunk.content.block.solarPanel.solarPanel.SolarPanelBlock;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,6 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import team.reborn.energy.api.EnergyStorage;
 import team.reborn.energy.api.EnergyStorageUtil;
 
@@ -26,9 +28,9 @@ import java.util.List;
 
 public class AbstractSolarPanelBlockEntity extends SmartBlockEntity implements EnergyTransferable, IHaveGoggleInformation {
 	protected final InternalEnergyStorage energy;
-	public int EnergyProductionRate = 30;
-	public float EnergyHeightMultiplier = 0.2F;
-	public float EnergyTemperatureMultiplier = 0.2F;
+	protected int EnergyProductionRate = 30;
+	protected float EnergyHeightMultiplier = 0.2F;
+	protected float EnergyTemperatureMultiplier = 0.2F;
 
 	public AbstractSolarPanelBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
@@ -96,13 +98,42 @@ public class AbstractSolarPanelBlockEntity extends SmartBlockEntity implements E
 	}
 
 	public int getEnergyProductionRate(Level level, BlockPos pos) {
+		float panelAngle;
+		Direction facing = getBlockState().getValue(SolarPanelBlock.FACING);
+
+		if (facing == Direction.EAST) {
+			panelAngle = 45;
+		} else if (facing == Direction.WEST) {
+			panelAngle = 135;
+		} else {
+			// If the panel isn't facing east or west, it's not going to face the sun
+			return 0;
+		}
+
+		// TODO: Fix this shit
+		float sunAngle = level.getSunAngle(1.0F);
+
+		Vec3 sunDirection = new Vec3(0, 1, 0).zRot(sunAngle)
+				.yRot((float) Math.toRadians(180.0F)); // Flip the vector to point towards the sun
+
+		double zRotationRadians = Math.atan2(sunDirection.y, sunDirection.x);
+		double zRotationDegrees = Math.toDegrees(zRotationRadians);
+
+		double panelToSunAngle = zRotationDegrees - panelAngle;
+		double panelToSunNormalized = 1.0 - Math.abs(panelToSunAngle / 90);
+		SolarpunkMod.LOGGER.info(String.valueOf(zRotationDegrees));
+
+		if (zRotationDegrees > 0) {
+			return (int) (panelToSunNormalized * EnergyProductionRate * getEnergyMultipler(level, pos));
+		}
+
 		return 0;
 	}
 
 	public float getEnergyMultipler(Level level, BlockPos pos) {
 		float energyMultiplier = 1;
 
-		if (!level.dimensionType().bedWorks()) { // If its the nether or end
+		if (!level.dimensionType().bedWorks()) { // If it's the nether or end
 			return 0;
 		}
 

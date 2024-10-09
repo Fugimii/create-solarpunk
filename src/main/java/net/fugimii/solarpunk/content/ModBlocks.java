@@ -13,6 +13,9 @@ public class ModBlocks {
 	public static final BlockEntry<CalibratedSolarPanelBlock> CALIBRATED_SOLAR_PANEL = SolarpunkMod.REGISTRATE.block("calibrated_solar_panel", CalibratedSolarPanelBlock::new)
 			.initialProperties(() -> Blocks.SPRUCE_PLANKS)
 			.properties(p -> p.mapColor(MapColor.COLOR_BLUE))
+			.blockstate((c, p) -> p.simpleBlock(c.getEntry(), // Is this the right way to do this???
+					p.models().getExistingFile(p.modLoc("block/calibrated_solar_panel"))))
+			.lang("Calibrated Solar Panel")
 			.item()
 			.build()
 			.register();
@@ -20,6 +23,9 @@ public class ModBlocks {
 	public static final BlockEntry<SolarPanelBlock> SOLAR_PANEL = SolarpunkMod.REGISTRATE.block("solar_panel", SolarPanelBlock::new)
 			.initialProperties(() -> Blocks.SPRUCE_PLANKS)
 			.properties(p -> p.mapColor(MapColor.COLOR_BLUE))
+			.blockstate((c, p) -> p.horizontalBlock(c.getEntry(), // Is this the right way to do this???
+					p.models().getExistingFile(p.modLoc("block/solar_panel"))))
+			.lang("Solar Panel")
 			.item()
 			.build()
 			.register();
