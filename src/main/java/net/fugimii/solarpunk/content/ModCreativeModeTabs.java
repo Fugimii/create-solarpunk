@@ -18,6 +18,7 @@ public class ModCreativeModeTabs {
 					.displayItems((pParameters, entries) -> {
 
 						entries.accept(ModBlocks.CALIBRATED_SOLAR_PANEL);
+						entries.accept(ModBlocks.SOLAR_PANEL);
 
 					}).build());
 
