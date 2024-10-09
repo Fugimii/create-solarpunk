@@ -121,7 +121,6 @@ public class AbstractSolarPanelBlockEntity extends SmartBlockEntity implements E
 
 		double panelToSunAngle = zRotationDegrees - panelAngle;
 		double panelToSunNormalized = 1.0 - Math.abs(panelToSunAngle / 90);
-		SolarpunkMod.LOGGER.info(String.valueOf(zRotationDegrees));
 
 		if (zRotationDegrees > 0) {
 			return (int) (panelToSunNormalized * EnergyProductionRate * getEnergyMultipler(level, pos));

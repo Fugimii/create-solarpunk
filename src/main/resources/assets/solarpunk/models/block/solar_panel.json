@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "solarpunk:block/calibrated_solar_panel",
-		"particle": "create:block/brass_casing"
+		"0": "solarpunk:block/solar_panel",
+		"particle": "solarpunk:block/heating_solar_panel"
 	},
 	"elements": [
 		{
@@ -12,7 +12,7 @@
 			"rotation": {"angle": 45, "axis": "x", "origin": [8, 8, 8]},
 			"faces": {
 				"north": {"uv": [2.5, 11.25, 1.25, 10], "rotation": 180, "texture": "#0"},
-				"east": {"uv": [0, 8, 1.25, 11.25], "rotation": 90, "texture": "#0"},
+				"east": {"uv": [0, 8.25, 1.25, 11.25], "rotation": 90, "texture": "#0"},
 				"south": {"uv": [2.5, 10, 1.25, 11.25], "texture": "#0"},
 				"west": {"uv": [0, 8, 1.25, 11.25], "rotation": 270, "texture": "#0"},
 				"up": {"uv": [0, 8, 1.25, 11.25], "texture": "#0"},
@@ -24,7 +24,7 @@
 			"to": [24, 14.5, -10.5],
 			"rotation": {"angle": 45, "axis": "x", "origin": [8, 3.75, 9.25]},
 			"faces": {
-				"north": {"uv": [4, 8, 0, 0], "rotation": 270, "texture": "#0"},
+				"north": {"uv": [4, 7.75, 0, 0], "rotation": 270, "texture": "#0"},
 				"east": {"uv": [1.25, 9, 5, 9.5], "rotation": 90, "texture": "#0"},
 				"south": {"uv": [8, 0, 4, 8], "rotation": 270, "texture": "#0"},
 				"west": {"uv": [1.25, 9.5, 5, 10], "rotation": 270, "texture": "#0"},
