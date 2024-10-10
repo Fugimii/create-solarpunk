@@ -27,6 +27,7 @@ public class SolarpunkModDataGenerator implements DataGeneratorEntrypoint {
 			BiConsumer<String, String> langConsumer = provider::add;
 
 			provideDefaultLang("tooltips", langConsumer);
+			provideDefaultLang("interface", langConsumer);
 		});
 	}
 

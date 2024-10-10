@@ -1,9 +1,9 @@
-// 1.20.1	2024-10-07T17:33:45.665434523	Create: solarpunk/Registrate Provider for solarpunk [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-4fde4b1550e03520372eec3fb8e1b06a64e92e0a assets/solarpunk/lang/en_ud.json
-e3f70301be5153675ea23705c3e98d232732b2cd assets/solarpunk/models/item/calibrated_solar_panel.json
-d6d5493c3e89e5ca7a257ca79b1150270acb5ebc assets/solarpunk/models/item/solar_panel.json
+// 1.20.1	2024-10-10T20:56:33.455254782	Create: solarpunk/Registrate Provider for solarpunk [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+6ae13eb1e6e0fb6bcf0725f624a39ee476b000d2 assets/solarpunk/lang/en_ud.json
+840b5a67ccf4b0c9220de2bde29d925fb4bddd02 assets/solarpunk/models/item/solar_panel.json
+e325ecc07a7d875f1d8200399768079d56d83a72 assets/solarpunk/models/item/calibrated_solar_panel.json
 ffc880dbc17dac3d0f73c4a3e2c943ffd9f21790 data/solarpunk/loot_tables/blocks/solar_panel.json
-3bc350af16018bb04aa61cb51035e056851d9e69 assets/solarpunk/blockstates/solar_panel.json
-c37dc3f3e001c8b51fe35c84a4128ebc1c8ee744 assets/solarpunk/lang/en_us.json
+5a68b86050d65a3040d1a70fd56877d0b059f747 assets/solarpunk/blockstates/solar_panel.json
+18283ac3f7f9c76be6798703730863f4fc4ed74c assets/solarpunk/lang/en_us.json
 81a3aae1c6d63e025fcc049a7164fa8669f834ee data/solarpunk/loot_tables/blocks/calibrated_solar_panel.json
-b9475f6c35e7d0e0f05d42972eeb57c4ebf6cc67 assets/solarpunk/blockstates/calibrated_solar_panel.json
+c74f7f9b94c79455a0154feff38d9d1fdb4800e4 assets/solarpunk/blockstates/calibrated_solar_panel.json

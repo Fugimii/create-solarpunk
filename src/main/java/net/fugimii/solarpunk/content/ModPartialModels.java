@@ -6,7 +6,7 @@ import net.fugimii.solarpunk.SolarpunkMod;
 
 public class ModPartialModels {
 	public static final PartialModel
-			CALIBRATED_SOLAR_PANEL_PANEL = block("calibrated_solar_panel_panel")
+			CALIBRATED_SOLAR_PANEL_PANEL = block("calibrated_solar_panel/calibrated_solar_panel_panel")
 	;
 
 	private static PartialModel block(String path) {

@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=east": {
-      "model": "solarpunk:block/solar_panel",
+      "model": "solarpunk:block/solar_panel/solar_panel",
       "y": 90
     },
     "facing=north": {
-      "model": "solarpunk:block/solar_panel"
+      "model": "solarpunk:block/solar_panel/solar_panel"
     },
     "facing=south": {
-      "model": "solarpunk:block/solar_panel",
+      "model": "solarpunk:block/solar_panel/solar_panel",
       "y": 180
     },
     "facing=west": {
-      "model": "solarpunk:block/solar_panel",
+      "model": "solarpunk:block/solar_panel/solar_panel",
       "y": 270
     }
   }
